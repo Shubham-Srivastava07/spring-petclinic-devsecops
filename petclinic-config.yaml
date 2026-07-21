@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: petclinic-config
+  namespace: petclinic
+data:
+  MYSQL_URL: "jdbc:mysql://mysql-service:3306/petclinic?useSSL=false"

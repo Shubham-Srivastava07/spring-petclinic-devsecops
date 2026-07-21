@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: petclinic-app
+  namespace: petclinic
+spec: 
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: petclinic
+  template:
+    metadata:
+      labels:
+        app: petclinic
+    spec:
+      containers:
+      - name: petclinic
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"      
+        ports:
+        - containerPort: {{ .Values.containerPort }}
+        env:
+        - name: MYSQL_URL
+          valueFrom:
+            configMapKeyRef:
+              name: petclinic-config
+              key: MYSQL_URL
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: petclinic-secret
+              key: MYSQL_PASSWORD
+
+      
+

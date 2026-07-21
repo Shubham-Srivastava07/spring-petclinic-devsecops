@@ -1,0 +1,16 @@
+replicaCount: 1
+
+image:
+  repository: shubh010701/petclinic
+  tag: latest
+
+containerPort: 8080
+  
+mysql:
+  image: mysql:8.0
+  password: petclinic
+
+services:
+  type: NodePort
+  port: 8080
+  nodePort: 30000
