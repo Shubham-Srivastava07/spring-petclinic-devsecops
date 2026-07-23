@@ -1,1 +1,7 @@
 kubectl
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+*.tfvars
+*.tfstate*
+*.key.json
