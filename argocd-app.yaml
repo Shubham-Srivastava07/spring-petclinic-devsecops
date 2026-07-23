@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: petclinic-gitops
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/Shubham-Srivastava07/spring-petclinic-devsecops.git'
+    targetRevision: HEAD
+    path: helm/petclinic-chart
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: petclinic
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
